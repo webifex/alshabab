@@ -45,6 +45,9 @@ const nextConfig = {
         hostname: process.env.NEXT_PUBLIC_MINIO_ENDPOINT,
       }] : []),
     ],
+    domains: [
+      'bucket-production-857d.up.railway.app',
+    ],
   },
   serverRuntimeConfig: {
     port: process.env.PORT || 3000

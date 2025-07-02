@@ -1,4 +1,5 @@
 const path = require("path")
+const {heroui} = require("@heroui/react");
 
 module.exports = {
   darkMode: "class",
@@ -9,6 +10,7 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx}",
     "./src/modules/**/*.{js,ts,jsx,tsx}",
     "./node_modules/@medusajs/ui/dist/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -60,13 +62,9 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          "Inter",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Segoe UI",
-          "Roboto",
-          "Helvetica Neue",
-          "Ubuntu",
+          "Poppins",
+          "Arial",
+          "Helvetica",
           "sans-serif",
         ],
       },
@@ -158,5 +156,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-radix")()],
+  plugins: [heroui()],
 }
