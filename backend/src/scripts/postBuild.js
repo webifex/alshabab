@@ -9,11 +9,17 @@ if (!fs.existsSync(MEDUSA_SERVER_PATH)) {
   throw new Error('.medusa/server directory not found. This indicates the Medusa build process failed. Please check for build errors.');
 }
 
-// Copy pnpm-lock.yaml
-fs.copyFileSync(
-  path.join(process.cwd(), 'pnpm-lock.yaml'),
-  path.join(MEDUSA_SERVER_PATH, 'pnpm-lock.yaml')
-);
+// Copy package-lock.json instead of pnpm-lock.yaml
+const lockfilePath = path.join(process.cwd(), 'package-lock.json');
+if (fs.existsSync(lockfilePath)) {
+  fs.copyFileSync(
+    lockfilePath,
+    path.join(MEDUSA_SERVER_PATH, 'package-lock.json')
+  );
+  console.log('Copied package-lock.json to .medusa/server');
+} else {
+  console.warn('package-lock.json not found, skipping lockfile copy');
+}
 
 // Copy .env if it exists
 const envPath = path.join(process.cwd(), '.env');
@@ -22,11 +28,12 @@ if (fs.existsSync(envPath)) {
     envPath,
     path.join(MEDUSA_SERVER_PATH, '.env')
   );
+  console.log('Copied .env to .medusa/server');
 }
 
-// Install dependencies
+// Install dependencies using npm
 console.log('Installing dependencies in .medusa/server...');
-execSync('pnpm i --prod --frozen-lockfile', { 
+execSync('npm ci --omit=dev', { 
   cwd: MEDUSA_SERVER_PATH,
   stdio: 'inherit'
 });
