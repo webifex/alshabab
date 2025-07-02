@@ -26,30 +26,44 @@ export async function retrieveCart() {
 }
 
 export async function getOrSetCart(countryCode: string) {
+  console.log("🛒 getOrSetCart called with countryCode:", countryCode)
+  
+  console.log("🛒 Retrieving existing cart...")
   let cart = await retrieveCart()
+  console.log("🛒 Retrieved cart:", cart ? cart.id : 'null')
+  
+  console.log("🛒 Getting region for countryCode:", countryCode)
   const region = await getRegion(countryCode)
+  console.log("🛒 Region found:", region ? region.id : 'null')
 
   if (!region) {
+    console.error("🛒 ERROR: Region not found for country code:", countryCode)
     throw new Error(`Region not found for country code: ${countryCode}`)
   }
 
   if (!cart) {
+    console.log("🛒 No existing cart, creating new cart with region:", region.id)
     const cartResp = await sdk.store.cart.create({ region_id: region.id })
+    console.log("🛒 Cart creation response:", cartResp)
     cart = cartResp.cart
+    console.log("🛒 New cart created:", cart.id)
     setCartId(cart.id)
     revalidateTag("cart")
   }
 
   if (cart && cart?.region_id !== region.id) {
+    console.log("🛒 Updating cart region from", cart.region_id, "to", region.id)
     await sdk.store.cart.update(
       cart.id,
       { region_id: region.id },
       {},
       getAuthHeaders()
     )
+    console.log("🛒 Cart region updated")
     revalidateTag("cart")
   }
 
+  console.log("🛒 Returning cart:", cart.id)
   return cart
 }
 
@@ -77,17 +91,34 @@ export async function addToCart({
   quantity: number
   countryCode: string
 }) {
+  console.log("🛒 AddToCart SERVER ACTION called with:", { variantId, quantity, countryCode })
+  
   if (!variantId) {
+    console.error("🛒 ERROR: Missing variant ID")
     throw new Error("Missing variant ID when adding to cart")
   }
 
-  const cart = await getOrSetCart(countryCode)
-  if (!cart) {
-    throw new Error("Error retrieving or creating cart")
-  }
+  try {
+    console.log("🛒 Getting or creating cart...")
+    const cart = await getOrSetCart(countryCode)
+    console.log("🛒 Cart result:", cart)
+    
+    if (!cart) {
+      console.error("🛒 ERROR: Could not get or create cart")
+      throw new Error("Error retrieving or creating cart")
+    }
+    
+    console.log("🛒 Cart found/created:", cart.id)
 
-  await sdk.store.cart
-    .createLineItem(
+    console.log("🛒 Creating line item with SDK...")
+    console.log("🛒 SDK config:", { 
+      baseUrl: process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || 'http://localhost:9000',
+      cartId: cart.id,
+      variantId,
+      quantity
+    })
+    
+    const result = await sdk.store.cart.createLineItem(
       cart.id,
       {
         variant_id: variantId,
@@ -96,10 +127,22 @@ export async function addToCart({
       {},
       getAuthHeaders()
     )
-    .then(() => {
-      revalidateTag("cart")
-    })
-    .catch(medusaError)
+    console.log("🛒 Line item created successfully:", result)
+    
+    // Ensure cart ID is stored in localStorage for frontend access
+    if (typeof window !== 'undefined' && result.cart?.id) {
+      localStorage.setItem('_medusa_cart_id', result.cart.id)
+      console.log("🛒 Cart ID stored in localStorage:", result.cart.id)
+    }
+    
+    revalidateTag("cart")
+    console.log("🛒 Returning result from addToCart")
+    return result
+  } catch (error) {
+    console.error("🛒 FULL ERROR in addToCart:", error)
+    console.error("🛒 Error stack:", error instanceof Error ? error.stack : 'No stack trace')
+    throw error // Re-throw instead of using medusaError to see the actual error
+  }
 }
 
 export async function updateLineItem({

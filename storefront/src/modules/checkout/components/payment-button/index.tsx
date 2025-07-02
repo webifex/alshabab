@@ -59,7 +59,14 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
         />
       )
     default:
-      return <Button disabled>Select a payment method</Button>
+      return (
+        <Button 
+          disabled
+          className="w-full px-8 py-4 bg-gray-300 text-gray-600 font-bold text-lg rounded-xl shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Select a payment method
+        </Button>
+      )
   }
 }
 
@@ -76,8 +83,9 @@ const GiftCardPaymentButton = () => {
       onClick={handleOrder}
       isLoading={submitting}
       data-testid="submit-order-button"
+      className="w-full px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
     >
-      Place order
+      🎁 Complete Gift Card Order
     </Button>
   )
 }
@@ -178,8 +186,9 @@ const StripePaymentButton = ({
         size="large"
         isLoading={submitting}
         data-testid={dataTestId}
+        className="w-full px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
       >
-        Place order
+        🛒 Place Order Securely
       </Button>
       <ErrorMessage
         error={errorMessage}
@@ -287,8 +296,9 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
         onClick={handlePayment}
         size="large"
         data-testid="submit-order-button"
+        className="w-full px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
       >
-        Place order
+        🛒 Place Order Securely
       </Button>
       <ErrorMessage
         error={errorMessage}

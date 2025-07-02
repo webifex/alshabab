@@ -11,7 +11,6 @@ import OptionSelect from "@modules/products/components/product-actions/option-se
 
 import MobileActions from "./mobile-actions"
 import ProductPrice from "../product-price"
-import { addToCart } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
 
 type ProductActionsProps = {
@@ -95,20 +94,74 @@ export default function ProductActions({
 
   // add the selected variant to the cart
   const handleAddToCart = async () => {
-    if (!selectedVariant?.id) return null
+    if (!selectedVariant?.id) {
+      console.error("❌ No selected variant ID")
+      return null
+    }
+
+    console.log("🛒 Starting add to cart process...")
+    console.log("🛒 Selected variant:", selectedVariant)
+    console.log("🛒 Country code:", countryCode)
 
     setIsAdding(true)
 
     try {
-      await addToCart({
+      console.log("🛒 Calling API add-to-cart with params:", {
         variantId: selectedVariant.id,
         quantity: 1,
         countryCode,
       })
+      
+      const startTime = Date.now()
+      const response = await fetch('/api/add-to-cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          variantId: selectedVariant.id,
+          quantity: 1,
+          countryCode,
+        }),
+      })
+      
+      const result = await response.json()
+      const endTime = Date.now()
+      
+      console.log("✅ API call completed in", endTime - startTime, "ms")
+      console.log("✅ Response:", result)
+      
+      if (result.success && result.cart && result.cart.id) {
+        console.log("✅ Item added to cart successfully!")
+        
+        // Store cart ID in localStorage for frontend access
+        localStorage.setItem('_medusa_cart_id', result.cart.id)
+        
+        // Trigger immediate cart refresh by dispatching storage event
+        window.dispatchEvent(new StorageEvent('storage', {
+          key: '_medusa_cart_id',
+          newValue: result.cart.id,
+          storageArea: localStorage
+        }))
+        
+        // Also trigger a manual refresh after a short delay
+        setTimeout(() => {
+          console.log("🔄 Refreshing page to update cart...")
+          window.location.reload()
+        }, 1000)
+      } else {
+        console.error("❌ API call failed:", result.error || 'Unknown error')
+      }
     } catch (error) {
-      console.error("Failed to add item to cart:", error)
-      // You could add a toast notification here
+      console.error("❌ Failed to add item to cart:", error)
+      console.error("❌ Error type:", typeof error)
+      console.error("❌ Error details:", error)
+      if (error instanceof Error) {
+        console.error("❌ Error message:", error.message)
+        console.error("❌ Error stack:", error.stack)
+      }
     } finally {
+      console.log("🛒 Setting isAdding to false")
       setIsAdding(false)
     }
   }

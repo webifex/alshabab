@@ -73,7 +73,7 @@ const CartDrawer = ({
         {/* Cart count badge - always visible */}
         <span className={`absolute -top-1 -right-1 text-white text-xs rounded-full px-1.5 py-0.5 min-w-[20px] h-5 flex items-center justify-center font-semibold transition-all duration-300 ${
           totalItems > 0 
-            ? 'bg-red-500 scale-100 animate-pulse' 
+            ? 'bg-red-500 scale-100' 
             : 'bg-gray-400 scale-90 opacity-70'
         }`}>
           {totalItems}
@@ -165,12 +165,18 @@ const CartDrawer = ({
                               className="flex-shrink-0"
                               onClick={close}
                             >
-                              <div className="w-20 h-20 bg-white rounded-lg overflow-hidden shadow-sm">
-                                <Thumbnail
-                                  thumbnail={item.variant?.product?.thumbnail}
-                                  images={item.variant?.product?.images}
-                                  size="square"
-                                />
+                              <div className="w-20 h-20 bg-white rounded-lg overflow-hidden shadow-sm flex items-center justify-center border-2 border-gray-100">
+                                {item.variant?.product?.thumbnail || item.variant?.product?.images?.[0]?.url ? (
+                                  <Thumbnail
+                                    thumbnail={item.variant?.product?.thumbnail}
+                                    images={item.variant?.product?.images}
+                                    size="square"
+                                  />
+                                ) : (
+                                  <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                                    <FaShoppingBag className="w-8 h-8 text-gray-400" />
+                                  </div>
+                                )}
                               </div>
                             </LocalizedClientLink>
                             
@@ -187,7 +193,16 @@ const CartDrawer = ({
                                   </LocalizedClientLink>
                                 </h3>
                                 <div className="text-right">
-                                  <LineItemPrice item={item} style="tight" />
+                                  <span className="font-semibold text-gray-900">
+                                    {item.unit_price && cartState?.currency_code ? (
+                                      convertToLocale({
+                                        amount: (item.unit_price || 0) * item.quantity,
+                                        currency_code: cartState.currency_code,
+                                      })
+                                    ) : (
+                                      'Price unavailable'
+                                    )}
+                                  </span>
                                 </div>
                               </div>
                               
@@ -238,7 +253,7 @@ const CartDrawer = ({
                         </span>
                       </div>
                       
-                      <div className="space-y-3">
+                      <div className="space-y-4">
                         <LocalizedClientLink href="/cart" passHref>
                           <DynamicButton
                             variant="outline"

@@ -44,9 +44,29 @@ const nextConfig = {
         protocol: "https",
         hostname: process.env.NEXT_PUBLIC_MINIO_ENDPOINT,
       }] : []),
+      { // Unsplash images
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      { // Source Unsplash images
+        protocol: "https",
+        hostname: "source.unsplash.com",
+      },
+      { // Placeholder images
+        protocol: "https",
+        hostname: "via.placeholder.com",
+      },
+      { // Picsum photos
+        protocol: "https",
+        hostname: "picsum.photos",
+      },
     ],
     domains: [
       'bucket-production-857d.up.railway.app',
+      'images.unsplash.com',
+      'via.placeholder.com',
+      'picsum.photos',
+      'source.unsplash.com',
     ],
   },
   serverRuntimeConfig: {

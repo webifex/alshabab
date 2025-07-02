@@ -1,14 +1,15 @@
 "use client"
 
 import { Heading, Text, clx } from "@medusajs/ui"
+import { FaCheck, FaShieldAlt } from "react-icons/fa"
 
 import PaymentButton from "../payment-button"
-import { useSearchParams } from "next/navigation"
+import { useCheckoutStep } from "@lib/hooks/use-search-params-safe"
 
 const Review = ({ cart }: { cart: any }) => {
-  const searchParams = useSearchParams()
+  const step = useCheckoutStep()
 
-  const isOpen = searchParams.get("step") === "review"
+  const isOpen = step === "review"
 
   const paidByGiftcard =
     cart?.gift_cards && cart?.gift_cards?.length > 0 && cart?.total === 0
@@ -19,35 +20,127 @@ const Review = ({ cart }: { cart: any }) => {
     (cart.payment_collection || paidByGiftcard)
 
   return (
-    <div className="bg-white">
-      <div className="flex flex-row items-center justify-between mb-6">
-        <Heading
-          level="h2"
-          className={clx(
-            "flex flex-row text-3xl-regular gap-x-2 items-baseline",
-            {
-              "opacity-50 pointer-events-none select-none": !isOpen,
-            }
-          )}
-        >
-          Review
-        </Heading>
+    <div className="bg-white/50 rounded-xl border border-gray-200/50 overflow-hidden">
+      {/* Header */}
+      <div className="flex flex-row items-center justify-between p-6 bg-gradient-to-r from-green-50 to-emerald-50 border-b border-gray-200/50">
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-white/80 rounded-lg shadow-sm">
+            <FaCheck className="w-5 h-5 text-green-600" />
+          </div>
+          <div>
+            <Heading
+              level="h2"
+              className="text-xl font-bold text-gray-900"
+            >
+              Review & Place Order
+            </Heading>
+            <p className="text-sm text-gray-600 mt-1">
+              Review your order details and complete your purchase
+            </p>
+          </div>
+        </div>
+        
+        {isOpen && previousStepsCompleted && (
+          <div className="flex items-center gap-2 px-3 py-2 bg-green-100 text-green-700 rounded-lg">
+            <FaShieldAlt className="w-4 h-4" />
+            <span className="text-sm font-medium">Ready to Order</span>
+          </div>
+        )}
       </div>
-      {isOpen && previousStepsCompleted && (
-        <>
-          <div className="flex items-start gap-x-1 w-full mb-6">
-            <div className="w-full">
-              <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                By clicking the Place Order button, you confirm that you have
-                read, understand and accept our Terms of Use, Terms of Sale and
-                Returns Policy and acknowledge that you have read Medusa
-                Store&apos;s Privacy Policy.
-              </Text>
+
+      {/* Content */}
+      <div className="p-6">
+        {isOpen && previousStepsCompleted ? (
+          <div className="space-y-6">
+            {/* Terms and Conditions */}
+            <div className="bg-amber-50/50 rounded-xl p-6 border border-amber-100">
+              <div className="flex items-start gap-3">
+                <div className="p-1 bg-amber-100 rounded-lg mt-1">
+                  <FaShieldAlt className="w-4 h-4 text-amber-600" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">
+                    Terms & Conditions
+                  </h3>
+                  <Text className="text-sm text-gray-700 leading-relaxed">
+                    By placing this order, you confirm that you have read, understand and accept our{" "}
+                    <button className="text-emerald-600 hover:text-emerald-700 underline">
+                      Terms of Use
+                    </button>
+                    ,{" "}
+                    <button className="text-emerald-600 hover:text-emerald-700 underline">
+                      Terms of Sale
+                    </button>
+                    {" "}and{" "}
+                    <button className="text-emerald-600 hover:text-emerald-700 underline">
+                      Returns Policy
+                    </button>
+                    . You also acknowledge that you have read Al-Shabab Fabrics'{" "}
+                    <button className="text-emerald-600 hover:text-emerald-700 underline">
+                      Privacy Policy
+                    </button>
+                    .
+                  </Text>
+                </div>
+              </div>
+            </div>
+
+            {/* Security Notice */}
+            <div className="bg-blue-50/50 rounded-xl p-6 border border-blue-100">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-1 bg-blue-100 rounded-lg">
+                  <FaShieldAlt className="w-4 h-4 text-blue-600" />
+                </div>
+                <h3 className="font-semibold text-gray-900">
+                  Secure Payment Guarantee
+                </h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-700">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span>256-bit SSL encryption</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span>PCI DSS compliant</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span>Fraud protection</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Place Order Button */}
+            <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-6 border border-emerald-100">
+              <div className="text-center mb-4">
+                <h3 className="font-semibold text-gray-900 mb-2">
+                  Ready to complete your order?
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Click the button below to finalize your purchase
+                </p>
+              </div>
+              
+              <div className="flex justify-center">
+                <PaymentButton cart={cart} data-testid="submit-order-button" />
+              </div>
             </div>
           </div>
-          <PaymentButton cart={cart} data-testid="submit-order-button" />
-        </>
-      )}
+        ) : (
+          <div className="text-center py-8">
+            <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+              <FaCheck className="w-8 h-8 text-gray-400" />
+            </div>
+            <h3 className="font-semibold text-gray-900 mb-2">
+              Complete Previous Steps
+            </h3>
+            <p className="text-gray-600 text-sm">
+              Please complete the previous checkout steps to review your order
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

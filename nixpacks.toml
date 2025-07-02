@@ -1,0 +1,5 @@
+[providers.node]
+packageManager = "npm"
+
+[variables]
+NIXPACKS_PACKAGE_MANAGER = "npm" 

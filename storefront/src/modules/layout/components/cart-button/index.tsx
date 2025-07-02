@@ -13,12 +13,34 @@ const fetchCart = async (): Promise<HttpTypes.StoreCart | null> => {
     const controller = new AbortController()
     const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
     
-    const res = await fetch(`/store/carts/${cartId}`, {
-      signal: controller.signal
+    // Use the correct backend URL
+    const backendUrl = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || 'http://localhost:9000'
+    const publishableKey = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
+    
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+    }
+    
+    // Add publishable key if available
+    if (publishableKey) {
+      headers['x-publishable-api-key'] = publishableKey
+    }
+    
+    const res = await fetch(`${backendUrl}/store/carts/${cartId}`, {
+      signal: controller.signal,
+      headers
     })
     clearTimeout(timeoutId)
     
-    if (!res.ok) return null
+    if (!res.ok) {
+      console.log(`Cart fetch failed: ${res.status} ${res.statusText}`)
+      // If cart is not found or invalid (400/404), clear the stored cart ID
+      if (res.status === 400 || res.status === 404) {
+        localStorage.removeItem("_medusa_cart_id")
+        console.log("🗑️ Cleared invalid cart ID from localStorage")
+      }
+      return null
+    }
     const data = await res.json()
     return data.cart as HttpTypes.StoreCart
   } catch (error) {
@@ -38,8 +60,13 @@ export default function CartButton() {
   useEffect(() => {
     refreshCart()
     
-    // Temporarily disable polling during database issues
-    // const interval = setInterval(refreshCart, 5000) // Check every 5 seconds
+    // Only poll if we have a cart ID, and less frequently to reduce spam
+    const interval = setInterval(() => {
+      const cartId = localStorage.getItem("_medusa_cart_id")
+      if (cartId) {
+        refreshCart()
+      }
+    }, 10000) // Check every 10 seconds only if cart ID exists
     
     // Also listen for storage events (cart updates from other tabs)
     const handleStorageChange = (e: StorageEvent) => {
@@ -51,7 +78,7 @@ export default function CartButton() {
     window.addEventListener('storage', handleStorageChange)
     
     return () => {
-      // clearInterval(interval) // Commented out since interval is disabled
+      clearInterval(interval)
       window.removeEventListener('storage', handleStorageChange)
     }
   }, [])

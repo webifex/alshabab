@@ -1,12 +1,13 @@
 import { getBaseURL } from "@lib/util/env"
 import { Metadata } from "next"
 import "../styles/globals.css"
-import { Cabin, Poppins } from "next/font/google"
+import { Cabin } from "next/font/google"
 
-const poppins = Cabin({
+const cabin = Cabin({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
+  variable: "--font-cabin",
 })
 
 export const metadata: Metadata = {
@@ -15,8 +16,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={poppins.className} data-mode="light">
-      <body>
+    <html lang="en" className={cabin.className} data-mode="light">
+      <body className={cabin.className}>
         
           <main className="relative">{children}</main>
         
