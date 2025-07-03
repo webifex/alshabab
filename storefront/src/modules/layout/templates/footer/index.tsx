@@ -200,47 +200,103 @@ export default function Footer() {
                   <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                 </svg>
               </a>
-            </div>
+                        </div>
 
-                         {/* Legal Links & Copyright */}
-             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-               <div className="flex flex-wrap gap-4">
-                 {LEGAL_LINKS.map((link) => (
-                   <LocalizedClientLink
-                     key={link.name}
-                     href={link.href}
-                     className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 text-sm"
-                   >
-                     {link.name}
-                   </LocalizedClientLink>
-                 ))}
-               </div>
-               <div className="text-gray-400 text-sm">
-                 © {new Date().getFullYear()} Al-Shabaab Fabrics. All rights reserved.
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
-       
-       {/* Webifex Labs Credit */}
-       <div className="border-t border-white/5 bg-slate-950/50">
-         <div className="max-w-7xl mx-auto px-4 py-4">
-           <div className="text-center">
-             <div className="text-gray-500 text-xs">
-               Designed & maintained by{' '}
-               <a 
-                 href="https://webifex.io" 
-                 target="_blank" 
-                 rel="noopener noreferrer"
-                 className="text-emerald-400 hover:text-emerald-300 transition-colors duration-300 font-medium"
-               >
-                 Webifex Labs
-               </a>
-             </div>
-           </div>
-         </div>
-       </div>
-     </footer>
+            {/* Payment Methods */}
+            <div className="flex flex-col items-center gap-4">
+              <span className="text-gray-400 text-sm">We Accept:</span>
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                {/* Visa */}
+                <div className="w-14 h-8 bg-white rounded-md flex items-center justify-center shadow-sm p-1">
+                  <svg viewBox="0 0 47.834 15.334" className="w-full h-full">
+                    <path fill="#1434CB" d="M18.266 0.667l-2.646 10.667h-3.156l2.646-10.667h3.156zm11.766 6.93c0-2.826-3.598-2.982-3.57-4.244 0.01-0.382 0.376-0.79 1.178-0.896 1.316-0.172 2.296 0.228 2.95 0.508l0.524-2.448c-0.718-0.264-1.642-0.534-2.79-0.534-2.946 0-5.024 1.566-5.04 3.81-0.018 1.658 1.482 2.584 2.612 3.134 1.16 0.564 1.55 0.926 1.546 1.43-0.008 0.77-0.924 1.118-1.778 1.13-1.492 0.020-2.36-0.402-3.048-0.724l-0.538 2.516c0.694 0.318 1.978 0.596 3.306 0.61 3.13 0.024 5.178-1.546 5.196-3.94 0.01-2.752-2.776-4.004-2.748-4.252zm9.594 3.618l1.244-3.438 0.696 3.438h-1.94zm3.708-6.796h-2.568c-0.794 0-1.388 0.23-1.736 1.068l-4.934 9.6h3.13l0.622-1.726h3.826l0.372 1.726h2.762l-2.404-10.668h-1.07zm-14.854 0l-2.896 7.284-0.31-1.568c-0.536-1.82-2.214-3.79-4.088-4.77l2.32 9.052h3.156l4.702-10h-2.884z"/>
+                    <path fill="#FAA61A" d="M6.454 0.667h-5.454l-0.064 0.382c3.466 0.888 5.756 3.026 6.7 5.596l-0.968-5.092c-0.164-0.66-0.638-0.84-1.214-0.886z"/>
+                  </svg>
+                </div>
+
+                {/* Mastercard */}
+                <div className="w-14 h-8 bg-white rounded-md flex items-center justify-center shadow-sm p-1">
+                  <svg viewBox="0 0 47.834 29.334" className="w-full h-full">
+                    <circle cx="15" cy="14.667" r="11" fill="#EB001B"/>
+                    <circle cx="32.834" cy="14.667" r="11" fill="#F79E1B"/>
+                    <path fill="#FF5F00" d="M23.917 6.667c-2.2 1.8-3.6 4.55-3.6 7.65s1.4 5.85 3.6 7.65c2.2-1.8 3.6-4.55 3.6-7.65s-1.4-5.85-3.6-7.65z"/>
+                  </svg>
+                </div>
+
+                {/* American Express */}
+                <div className="w-14 h-8 bg-white rounded-md flex items-center justify-center shadow-sm p-1">
+                  <svg viewBox="0 0 47.834 29.334" className="w-full h-full">
+                    <rect width="47.834" height="29.334" fill="#006FCF" rx="3"/>
+                    <path fill="white" d="M7.5 9.5h8v1.8h-6.2v1.2h5.8v1.8h-5.8v1.2h6.2v1.8h-8v-7.8zm10.5 0h2.2l1.8 2.6 1.8-2.6h2.2l-2.8 3.9 2.8 3.9h-2.2l-1.8-2.6-1.8 2.6h-2.2l2.8-3.9-2.8-3.9zm12 0h2.2l1.8 2.6 1.8-2.6h2.2l-2.8 3.9 2.8 3.9h-2.2l-1.8-2.6-1.8 2.6h-2.2l2.8-3.9-2.8-3.9z"/>
+                  </svg>
+                </div>
+
+                {/* Afterpay */}
+                <div className="w-20 h-8 bg-white rounded-md flex items-center justify-center shadow-sm p-1">
+                  <svg viewBox="0 0 100 30" className="w-full h-full">
+                    <rect width="100" height="30" fill="#b2fce4" rx="4"/>
+                    <path fill="#00c58e" d="M8 7h3.5l1.5 4.5L14.5 7H18v16h-2.5V12l-1.2 3h-2.6l-1.2-3v11H8V7zm12 0h5.5c2.5 0 4 1.5 4 3.5s-1.5 3.5-4 3.5H22.5v6H20V7zm2.5 2v3h3c0.8 0 1.5-0.7 1.5-1.5S26.3 9 25.5 9h-3zm8 0h2.5v9h3.5v2.5H30.5V9zm6.5 0h5.5v2h-3v1.5h2.8v2H39v1.5h3v2h-5.5V9zm6.5 0h3l2.5 10 2.5-10h3l-4 16h-3l-4-16z"/>
+                  </svg>
+                </div>
+
+                {/* Zip Pay */}
+                <div className="w-20 h-8 bg-white rounded-md flex items-center justify-center shadow-sm p-1">
+                  <svg viewBox="0 0 100 30" className="w-full h-full">
+                    <rect width="100" height="30" fill="#ffe8f5" rx="4"/>
+                    <g fill="#ff0080">
+                      <path d="M15 7h8v3h-5l5 7v6h-8v-3h5l-5-7V7z"/>
+                      <rect x="28" y="7" width="3" height="16"/>
+                      <path d="M38 7h3l3 9V7h3v16h-3l-3-9v9h-3V7z"/>
+                      <circle cx="57" cy="15" r="6" fill="none" stroke="#ff0080" stroke-width="1.5"/>
+                      <path d="M53 15l3-3 3 3-3 3-3-3z"/>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <p className="text-gray-500 text-xs text-center max-w-md">
+                Shop with confidence using your preferred payment method. All transactions are secure and encrypted.
+              </p>
+            </div>
+          </div>
+
+        {/* Legal Links & Copyright */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 mt-8 pt-6 border-t border-white/10">
+          <div className="flex flex-wrap gap-4">
+            {LEGAL_LINKS.map((link) => (
+              <LocalizedClientLink
+                key={link.name}
+                href={link.href}
+                className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 text-sm"
+              >
+                {link.name}
+              </LocalizedClientLink>
+            ))}
+          </div>
+          <div className="text-gray-400 text-sm">
+            © {new Date().getFullYear()} Al-Shabaab Fabrics. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    {/* Webifex Labs Credit */}
+    <div className="border-t border-white/5 bg-slate-950/50">
+      <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="text-center">
+          <div className="text-gray-500 text-xs">
+            Designed & maintained by{' '}
+            <a 
+              href="https://webifex.io" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-emerald-400 hover:text-emerald-300 transition-colors duration-300 font-medium"
+            >
+              Webifex Labs
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
   )
 }

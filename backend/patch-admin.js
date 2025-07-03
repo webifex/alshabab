@@ -3,7 +3,8 @@ const fs = require("fs");
 ////////////////////////////// utils /////////////////////////////
 
 const findFilePathByNamePattern = (filePattern, fileExtension) => {
-  const dirPath = `${__dirname}/node_modules/@medusajs/dashboard/dist`;
+  const basePath = __dirname;
+  const dirPath = `${basePath}/node_modules/@medusajs/dashboard/dist`;
   
   if (!fs.existsSync(dirPath)) {
     console.log(`Dashboard dist directory not found: ${dirPath}`);
@@ -29,7 +30,8 @@ const findFilePathByNamePattern = (filePattern, fileExtension) => {
 
 function findChunkFileByContainingText(text) {
   try {
-    const dirPath = `${__dirname}/node_modules/@medusajs/dashboard/dist`;
+    const basePath = __dirname;
+    const dirPath = `${basePath}/node_modules/@medusajs/dashboard/dist`;
     
     if (!fs.existsSync(dirPath)) {
       console.log(`Dashboard dist directory not found: ${dirPath}`);
@@ -115,7 +117,7 @@ if (CHUNK_2) {
 
 // 3) Try to update page title
 console.log("3. Looking for page title references...");
-const APP_MJS_PATH = `${__dirname}/node_modules/@medusajs/dashboard/dist/app.mjs`;
+const APP_MJS_PATH = `${basePath}/node_modules/@medusajs/dashboard/dist/app.mjs`;
 if (fs.existsSync(APP_MJS_PATH)) {
   replaceInFile(APP_MJS_PATH, "Medusa", "Al Shabaab Fabrics");
 }
@@ -130,7 +132,7 @@ if (LOGIN_PATH) {
 
 // 5) Try to update the main index file
 console.log("5. Updating main index file...");
-const INDEX_PATH = `${__dirname}/node_modules/@medusajs/dashboard/dist/index.html`;
+const INDEX_PATH = `${basePath}/node_modules/@medusajs/dashboard/dist/index.html`;
 if (fs.existsSync(INDEX_PATH)) {
   replaceInFile(INDEX_PATH, "<title>Medusa</title>", "<title>Al Shabaab Fabrics Admin</title>");
   replaceInFile(INDEX_PATH, "Medusa", "Al Shabaab Fabrics");
@@ -138,7 +140,8 @@ if (fs.existsSync(INDEX_PATH)) {
 
 // 6) Clear Vite cache to ensure changes are visible
 console.log("6. Clearing cache...");
-const VITE_CACHE_PATH = `${__dirname}/node_modules/@medusajs/admin-bundler/node_modules/.vite`;
+const basePath = __dirname;
+const VITE_CACHE_PATH = `${basePath}/node_modules/@medusajs/admin-bundler/node_modules/.vite`;
 if (fs.existsSync(VITE_CACHE_PATH)) {
   fs.rmSync(VITE_CACHE_PATH, { recursive: true, force: true });
   console.log("Vite cache cleared successfully.");
@@ -146,9 +149,8 @@ if (fs.existsSync(VITE_CACHE_PATH)) {
 
 // Alternative cache paths
 const ALT_CACHE_PATHS = [
-  `${__dirname}/node_modules/.vite`,
-  `${__dirname}/.medusa/server/node_modules/.vite`,
-  `${__dirname}/.vite`
+  `${basePath}/node_modules/.vite`,
+  `${basePath}/.vite`
 ];
 
 ALT_CACHE_PATHS.forEach(cachePath => {

@@ -31,6 +31,18 @@ if (fs.existsSync(envPath)) {
   console.log('Copied .env to .medusa/server');
 }
 
+// Copy patch-admin.js for admin branding customization
+const patchAdminPath = path.join(process.cwd(), 'patch-admin.js');
+if (fs.existsSync(patchAdminPath)) {
+  fs.copyFileSync(
+    patchAdminPath,
+    path.join(MEDUSA_SERVER_PATH, 'patch-admin.js')
+  );
+  console.log('Copied patch-admin.js to .medusa/server');
+} else {
+  console.warn('patch-admin.js not found, skipping admin branding script copy');
+}
+
 // Install dependencies using npm
 console.log('Installing dependencies in .medusa/server...');
 execSync('npm ci --omit=dev', { 
