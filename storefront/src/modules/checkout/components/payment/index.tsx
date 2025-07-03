@@ -65,7 +65,7 @@ const Payment = ({
         },
       },
       classes: {
-        base: "p-3 block w-full border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors",
+        base: "p-3 block w-full border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition-colors",
       },
     }
   }, [])
@@ -127,10 +127,10 @@ const Payment = ({
   return (
     <div className="bg-white/50 rounded-xl border border-gray-200/50 overflow-hidden">
       {/* Header */}
-      <div className="flex flex-row items-center justify-between p-6 bg-gradient-to-r from-purple-50 to-pink-50 border-b border-gray-200/50">
+      <div className="flex flex-row items-center justify-between p-6 bg-gray-50 border-b border-gray-200/50">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-white/80 rounded-lg shadow-sm">
-            <FaCreditCard className="w-5 h-5 text-purple-600" />
+            <FaCreditCard className="w-5 h-5 text-gray-600" />
           </div>
           <div>
             <Heading
@@ -149,7 +149,7 @@ const Payment = ({
           {!isOpen && paymentReady && (
             <button
               onClick={handleEdit}
-              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-purple-600 hover:text-purple-700 bg-white/80 hover:bg-white rounded-lg transition-all duration-200 shadow-sm hover:shadow-md"
+              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 bg-white/80 hover:bg-white rounded-lg transition-all duration-200 shadow-sm hover:shadow-md"
               data-testid="edit-payment-button"
             >
               <FaEdit className="w-4 h-4" />
@@ -157,7 +157,7 @@ const Payment = ({
             </button>
           )}
           {!isOpen && paymentReady && (
-            <div className="flex items-center gap-2 px-3 py-2 bg-green-100 text-green-700 rounded-lg">
+            <div className="flex items-center gap-2 px-3 py-2 bg-gray-100 text-gray-700 rounded-lg">
               <CheckCircleSolid className="w-4 h-4" />
               <span className="text-sm font-medium">Complete</span>
             </div>
@@ -170,9 +170,9 @@ const Payment = ({
         <div className={isOpen ? "block" : "hidden"}>
           {!paidByGiftcard && availablePaymentMethods?.length && (
             <div className="space-y-6">
-              <div className="bg-gray-50/50 rounded-xl p-6 border border-gray-100">
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
                 <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                  <FaLock className="w-4 h-4 text-purple-600" />
+                  <FaLock className="w-4 h-4 text-gray-600" />
                   Available Payment Methods
                 </h3>
                 
@@ -194,7 +194,7 @@ const Payment = ({
                           className={clx(
                             "relative flex items-center justify-between p-4 rounded-xl border-2 transition-all duration-200 cursor-pointer hover:shadow-md",
                             {
-                              "border-purple-300 bg-purple-50/50 shadow-sm": isSelected,
+                              "border-gray-400 bg-gray-100 shadow-sm": isSelected,
                               "border-gray-200 bg-white hover:border-gray-300": !isSelected,
                             }
                           )}
@@ -203,7 +203,7 @@ const Payment = ({
                             <div className={clx(
                               "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors",
                               {
-                                "border-purple-500 bg-purple-500": isSelected,
+                                "border-gray-600 bg-gray-600": isSelected,
                                 "border-gray-300": !isSelected,
                               }
                             )}>
@@ -225,9 +225,9 @@ const Payment = ({
               </div>
 
               {isStripe && stripeReady && (
-                <div className="bg-blue-50/50 rounded-xl p-6 border border-blue-100">
+                <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
                   <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <FaCreditCard className="w-4 h-4 text-blue-600" />
+                    <FaCreditCard className="w-4 h-4 text-gray-600" />
                     Card Details
                   </h3>
 
@@ -255,8 +255,8 @@ const Payment = ({
           {paidByGiftcard && (
             <div className="bg-green-50/50 rounded-xl p-6 border border-green-100">
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                  <span className="text-green-600 text-sm">🎁</span>
+                <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+                  <span className="text-gray-600 text-sm">🎁</span>
                 </div>
                 <Text className="font-semibold text-gray-900">
                   Payment Method
@@ -276,7 +276,7 @@ const Payment = ({
           <div className="flex justify-end pt-6">
             <Button
               size="large"
-              className="px-8 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
+              className="px-8 py-3 bg-gray-900 hover:bg-gray-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               onClick={handleSubmit}
               isLoading={isLoading}
               disabled={
@@ -295,9 +295,9 @@ const Payment = ({
         <div className={isOpen ? "hidden" : "block"}>
           {cart && paymentReady && activeSession ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-purple-50/50 rounded-xl p-4 border border-purple-100">
+              <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
                 <div className="flex items-center gap-2 mb-3">
-                  <FaCreditCard className="w-4 h-4 text-purple-600" />
+                  <FaCreditCard className="w-4 h-4 text-gray-600" />
                   <Text className="font-semibold text-gray-900">
                     Payment Method
                   </Text>
@@ -308,9 +308,9 @@ const Payment = ({
                 </Text>
               </div>
               
-              <div className="bg-blue-50/50 rounded-xl p-4 border border-blue-100">
+              <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
                 <div className="flex items-center gap-2 mb-3">
-                  <FaLock className="w-4 h-4 text-blue-600" />
+                  <FaLock className="w-4 h-4 text-gray-600" />
                   <Text className="font-semibold text-gray-900">
                     Payment Details
                   </Text>
@@ -330,9 +330,9 @@ const Payment = ({
               </div>
             </div>
           ) : paidByGiftcard ? (
-            <div className="bg-green-50/50 rounded-xl p-4 border border-green-100">
+            <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-green-600 text-lg">🎁</span>
+                <span className="text-gray-600 text-lg">🎁</span>
                 <Text className="font-semibold text-gray-900">
                   Payment Method
                 </Text>

@@ -54,7 +54,7 @@ export default async function CheckoutForm({
     <div className="space-y-8">
       {/* Step 1: Addresses */}
       <div className="relative">
-        <div className="absolute -left-4 top-6 w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
+        <div className="absolute -left-4 top-6 w-8 h-8 bg-gray-600 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
           1
         </div>
         <div className="pl-8">
@@ -64,7 +64,7 @@ export default async function CheckoutForm({
 
       {/* Step 2: Shipping */}
       <div className="relative">
-        <div className="absolute -left-4 top-6 w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
+        <div className="absolute -left-4 top-6 w-8 h-8 bg-gray-600 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
           2
         </div>
         <div className="pl-8">
@@ -75,7 +75,7 @@ export default async function CheckoutForm({
 
       {/* Step 3: Payment */}
       <div className="relative">
-        <div className="absolute -left-4 top-6 w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
+        <div className="absolute -left-4 top-6 w-8 h-8 bg-gray-600 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
           3
         </div>
         <div className="pl-8">
@@ -85,7 +85,7 @@ export default async function CheckoutForm({
 
       {/* Step 4: Review */}
       <div className="relative">
-        <div className="absolute -left-4 top-6 w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
+        <div className="absolute -left-4 top-6 w-8 h-8 bg-gray-600 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
           4
         </div>
         <div className="pl-8">

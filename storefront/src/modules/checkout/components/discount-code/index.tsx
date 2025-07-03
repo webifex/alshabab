@@ -60,7 +60,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="txt-medium text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
+              className="txt-medium text-gray-700 hover:text-gray-900 underline"
               data-testid="add-discount-button"
             >
               Add Promotion Code(s)
@@ -156,7 +156,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                         }}
                         data-testid="remove-discount-button"
                       >
-                        <Trash size={14} />
+                        <Trash />
                         <span className="sr-only">
                           Remove discount code from order
                         </span>

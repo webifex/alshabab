@@ -38,7 +38,7 @@ const Addresses = ({
   )
 
   const handleEdit = () => {
-    router.push(pathname + "?step=address")
+    router.push(pathname + "?step=address", { scroll: false })
   }
 
   const [message, formAction] = useFormState(setAddresses, null)
@@ -46,10 +46,10 @@ const Addresses = ({
   return (
     <div className="bg-white/50 rounded-xl border border-gray-200/50 overflow-hidden">
       {/* Header */}
-      <div className="flex flex-row items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200/50">
+      <div className="flex flex-row items-center justify-between p-6 bg-gray-50 border-b border-gray-200/50">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-white/80 rounded-lg shadow-sm">
-            <FaHome className="w-5 h-5 text-blue-600" />
+            <FaHome className="w-5 h-5 text-gray-600" />
           </div>
           <div>
             <Heading
@@ -68,7 +68,7 @@ const Addresses = ({
           {!isOpen && cart?.shipping_address && (
             <button
               onClick={handleEdit}
-              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 bg-white/80 hover:bg-white rounded-lg transition-all duration-200 shadow-sm hover:shadow-md"
+              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 bg-white/80 hover:bg-white rounded-lg transition-all duration-200 shadow-sm hover:shadow-md"
               data-testid="edit-address-button"
             >
               <FaEdit className="w-4 h-4" />
@@ -76,7 +76,7 @@ const Addresses = ({
             </button>
           )}
           {!isOpen && cart?.shipping_address && (
-            <div className="flex items-center gap-2 px-3 py-2 bg-green-100 text-green-700 rounded-lg">
+            <div className="flex items-center gap-2 px-3 py-2 bg-gray-100 text-gray-700 rounded-lg">
               <CheckCircleSolid className="w-4 h-4" />
               <span className="text-sm font-medium">Complete</span>
             </div>
@@ -88,7 +88,7 @@ const Addresses = ({
       <div className="p-6">
         {isOpen ? (
           <form action={formAction} className="space-y-6">
-            <div className="bg-gray-50/50 rounded-xl p-6 border border-gray-100">
+            <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
               <ShippingAddress
                 customer={customer}
                 checked={sameAsBilling}
@@ -98,7 +98,7 @@ const Addresses = ({
             </div>
 
             {!sameAsBilling && (
-              <div className="bg-gray-50/50 rounded-xl p-6 border border-gray-100">
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
                 <div className="flex items-center gap-3 mb-4">
                   <FaMapMarkerAlt className="w-5 h-5 text-gray-600" />
                   <Heading
@@ -114,7 +114,7 @@ const Addresses = ({
             
             <div className="flex justify-end pt-4">
               <SubmitButton 
-                className="px-8 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]" 
+                className="px-8 py-3 bg-gray-900 hover:bg-gray-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300" 
                 data-testid="submit-address-button"
               >
                 Continue to Delivery
@@ -129,11 +129,11 @@ const Addresses = ({
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Shipping Address */}
                 <div
-                  className="bg-blue-50/50 rounded-xl p-4 border border-blue-100"
+                  className="bg-gray-50 rounded-xl p-4 border border-gray-200"
                   data-testid="shipping-address-summary"
                 >
                   <div className="flex items-center gap-2 mb-3">
-                    <FaHome className="w-4 h-4 text-blue-600" />
+                    <FaHome className="w-4 h-4 text-gray-600" />
                     <Text className="font-semibold text-gray-900">
                       Shipping Address
                     </Text>
@@ -159,11 +159,11 @@ const Addresses = ({
 
                 {/* Contact Information */}
                 <div
-                  className="bg-green-50/50 rounded-xl p-4 border border-green-100"
+                  className="bg-gray-50 rounded-xl p-4 border border-gray-200"
                   data-testid="shipping-contact-summary"
                 >
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-4 h-4 text-green-600">📞</div>
+                    <div className="w-4 h-4 text-gray-600">📞</div>
                     <Text className="font-semibold text-gray-900">
                       Contact
                     </Text>
@@ -176,11 +176,11 @@ const Addresses = ({
 
                 {/* Billing Address */}
                 <div
-                  className="bg-purple-50/50 rounded-xl p-4 border border-purple-100"
+                  className="bg-gray-50 rounded-xl p-4 border border-gray-200"
                   data-testid="billing-address-summary"
                 >
                   <div className="flex items-center gap-2 mb-3">
-                    <FaMapMarkerAlt className="w-4 h-4 text-purple-600" />
+                    <FaMapMarkerAlt className="w-4 h-4 text-gray-600" />
                     <Text className="font-semibold text-gray-900">
                       Billing Address
                     </Text>

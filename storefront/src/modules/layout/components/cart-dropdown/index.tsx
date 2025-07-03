@@ -7,12 +7,13 @@ import { AnimatePresence, motion } from "framer-motion"
 
 import { convertToLocale } from "@lib/util/money"
 import { HttpTypes } from "@medusajs/types"
-import DeleteButton from "@modules/common/components/delete-button"
 import LineItemOptions from "@modules/common/components/line-item-options"
 import LineItemPrice from "@modules/common/components/line-item-price"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Thumbnail from "@modules/products/components/thumbnail"
 import DynamicButton from "@modules/common/components/dynamic-button"
+import QuantitySelector from "@modules/common/components/quantity-selector"
+import RemoveButton from "@modules/common/components/remove-button"
 
 const CartDrawer = ({
   cart: cartState,
@@ -213,20 +214,17 @@ const CartDrawer = ({
                               />
                               
                               <div className="flex justify-between items-center mt-3">
-                                <span
-                                  className="text-sm text-gray-600"
-                                  data-testid="cart-item-quantity"
-                                  data-value={item.quantity}
-                                >
-                                  Qty: {item.quantity}
-                                </span>
-                                <DeleteButton
-                                  id={item.id}
-                                  className="text-red-500 hover:text-red-700 text-sm"
-                                  data-testid="cart-item-remove-button"
-                                >
-                                  Remove
-                                </DeleteButton>
+                                <QuantitySelector
+                                  lineId={item.id}
+                                  quantity={item.quantity}
+                                  variant="compact"
+                                  className="flex-shrink-0"
+                                />
+                                <RemoveButton
+                                  lineId={item.id}
+                                  variant="minimal"
+                                  className="ml-2"
+                                />
                               </div>
                             </div>
                           </motion.div>
@@ -253,12 +251,12 @@ const CartDrawer = ({
                         </span>
                       </div>
                       
-                      <div className="space-y-4">
+                      <div className="space-y-3">
                         <LocalizedClientLink href="/cart" passHref>
                           <DynamicButton
                             variant="outline"
                             size="lg"
-                            className="w-full"
+                            className="w-full mb-3 border-2 border-gray-300 hover:border-emerald-500 text-gray-700 hover:text-emerald-600 bg-white hover:bg-emerald-50 transition-all duration-200"
                             onClick={close}
                             data-testid="go-to-cart-button"
                           >
@@ -270,7 +268,7 @@ const CartDrawer = ({
                           <DynamicButton
                             variant="primary"
                             size="lg"
-                            className="w-full"
+                            className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
                             onClick={close}
                           >
                             Checkout

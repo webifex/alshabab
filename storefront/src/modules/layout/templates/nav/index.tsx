@@ -3,6 +3,7 @@ import { Suspense, useState, useRef } from "react"
 import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
+import CartPrice from "@modules/layout/components/cart-price"
 import { FaHeart, FaSearch, FaTimes, FaUser } from "react-icons/fa"
 import { Menu } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
@@ -210,9 +211,9 @@ export default function Nav() {
               <Suspense fallback={<span className="text-lg">🛒</span>}>
                 <CartButton />
               </Suspense>
-              <span className="text-sm font-semibold text-gray-700 group-hover/cart:text-emerald-600 transition-colors">
-                $0.00
-              </span>
+              <Suspense fallback={<span className="text-sm font-semibold text-gray-700">$0.00</span>}>
+                <CartPrice />
+              </Suspense>
             </div>
           </div>
 

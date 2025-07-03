@@ -22,10 +22,10 @@ const Review = ({ cart }: { cart: any }) => {
   return (
     <div className="bg-white/50 rounded-xl border border-gray-200/50 overflow-hidden">
       {/* Header */}
-      <div className="flex flex-row items-center justify-between p-6 bg-gradient-to-r from-green-50 to-emerald-50 border-b border-gray-200/50">
+      <div className="flex flex-row items-center justify-between p-6 bg-gray-50 border-b border-gray-200/50">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-white/80 rounded-lg shadow-sm">
-            <FaCheck className="w-5 h-5 text-green-600" />
+            <FaCheck className="w-5 h-5 text-gray-600" />
           </div>
           <div>
             <Heading
@@ -41,7 +41,7 @@ const Review = ({ cart }: { cart: any }) => {
         </div>
         
         {isOpen && previousStepsCompleted && (
-          <div className="flex items-center gap-2 px-3 py-2 bg-green-100 text-green-700 rounded-lg">
+          <div className="flex items-center gap-2 px-3 py-2 bg-gray-100 text-gray-700 rounded-lg">
             <FaShieldAlt className="w-4 h-4" />
             <span className="text-sm font-medium">Ready to Order</span>
           </div>

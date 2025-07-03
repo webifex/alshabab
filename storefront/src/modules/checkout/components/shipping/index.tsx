@@ -68,10 +68,10 @@ const Shipping: React.FC<ShippingProps> = ({
   return (
     <div className="bg-white/50 rounded-xl border border-gray-200/50 overflow-hidden">
       {/* Header */}
-      <div className="flex flex-row items-center justify-between p-6 bg-gradient-to-r from-green-50 to-emerald-50 border-b border-gray-200/50">
+      <div className="flex flex-row items-center justify-between p-6 bg-gray-50 border-b border-gray-200/50">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-white/80 rounded-lg shadow-sm">
-            <FaTruck className="w-5 h-5 text-green-600" />
+            <FaTruck className="w-5 h-5 text-gray-600" />
           </div>
           <div>
             <Heading
@@ -93,7 +93,7 @@ const Shipping: React.FC<ShippingProps> = ({
             cart?.email && (
               <button
                 onClick={handleEdit}
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-green-600 hover:text-green-700 bg-white/80 hover:bg-white rounded-lg transition-all duration-200 shadow-sm hover:shadow-md"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 bg-white/80 hover:bg-white rounded-lg transition-all duration-200 shadow-sm hover:shadow-md"
                 data-testid="edit-delivery-button"
               >
                 <FaEdit className="w-4 h-4" />
@@ -101,7 +101,7 @@ const Shipping: React.FC<ShippingProps> = ({
               </button>
             )}
           {!isOpen && (cart.shipping_methods?.length ?? 0) > 0 && (
-            <div className="flex items-center gap-2 px-3 py-2 bg-green-100 text-green-700 rounded-lg">
+            <div className="flex items-center gap-2 px-3 py-2 bg-gray-100 text-gray-700 rounded-lg">
               <CheckCircleSolid className="w-4 h-4" />
               <span className="text-sm font-medium">Complete</span>
             </div>
@@ -115,10 +115,10 @@ const Shipping: React.FC<ShippingProps> = ({
           <div data-testid="delivery-options-container" className="space-y-6">
             {needsShippingAddress ? (
               /* Show message when shipping address is required */
-              <div className="bg-amber-50/50 rounded-xl p-6 border border-amber-100">
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
                 <div className="flex items-start gap-3">
-                  <div className="p-2 bg-amber-100 rounded-lg mt-1">
-                    <FaMapMarkerAlt className="w-4 h-4 text-amber-600" />
+                  <div className="p-2 bg-gray-100 rounded-lg mt-1">
+                    <FaMapMarkerAlt className="w-4 h-4 text-gray-600" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-2">
@@ -129,7 +129,7 @@ const Shipping: React.FC<ShippingProps> = ({
                     </p>
                     <button
                       onClick={() => router.push(pathname + "?step=address", { scroll: false })}
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium rounded-lg transition-colors duration-200"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-900 text-white text-sm font-medium rounded-lg transition-colors duration-200"
                     >
                       <FaMapMarkerAlt className="w-4 h-4" />
                       Go to Address Step
@@ -139,10 +139,10 @@ const Shipping: React.FC<ShippingProps> = ({
               </div>
             ) : !hasShippingMethods ? (
               /* Show message when no shipping methods are available */
-              <div className="bg-red-50/50 rounded-xl p-6 border border-red-100">
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
                 <div className="flex items-start gap-3">
-                  <div className="p-2 bg-red-100 rounded-lg mt-1">
-                    <FaExclamationTriangle className="w-4 h-4 text-red-600" />
+                  <div className="p-2 bg-gray-100 rounded-lg mt-1">
+                    <FaExclamationTriangle className="w-4 h-4 text-gray-600" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-2">
@@ -151,7 +151,7 @@ const Shipping: React.FC<ShippingProps> = ({
                     <p className="text-sm text-gray-700 mb-4">
                       Unfortunately, we don't have any delivery options available for your location at the moment. Please contact our support team for assistance.
                     </p>
-                    <div className="text-xs text-gray-600 bg-gray-50 p-3 rounded-lg">
+                    <div className="text-xs text-gray-600 bg-white p-3 rounded-lg border border-gray-200">
                       <strong>Troubleshooting:</strong>
                       <ul className="mt-1 space-y-1">
                         <li>• Check if your address is correct</li>
@@ -164,9 +164,9 @@ const Shipping: React.FC<ShippingProps> = ({
               </div>
             ) : (
               /* Show shipping methods when available */
-              <div className="bg-gray-50/50 rounded-xl p-6 border border-gray-100">
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
                 <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                  <FaShippingFast className="w-4 h-4 text-green-600" />
+                  <FaShippingFast className="w-4 h-4 text-gray-600" />
                   Available Delivery Options
                 </h3>
                 
@@ -181,7 +181,7 @@ const Shipping: React.FC<ShippingProps> = ({
                         className={clx(
                           "relative flex items-center justify-between p-4 rounded-xl border-2 transition-all duration-200 cursor-pointer hover:shadow-md",
                           {
-                            "border-emerald-300 bg-emerald-50/50 shadow-sm": isSelected,
+                            "border-gray-400 bg-gray-100 shadow-sm": isSelected,
                             "border-gray-200 bg-white hover:border-gray-300": !isSelected,
                           }
                         )}
@@ -190,7 +190,7 @@ const Shipping: React.FC<ShippingProps> = ({
                           <div className={clx(
                             "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors",
                             {
-                              "border-emerald-500 bg-emerald-500": isSelected,
+                              "border-gray-600 bg-gray-600": isSelected,
                               "border-gray-300": !isSelected,
                             }
                           )}>
@@ -213,7 +213,7 @@ const Shipping: React.FC<ShippingProps> = ({
                             })}
                           </span>
                           {option.amount === 0 && (
-                            <p className="text-sm text-green-600 font-medium">Free</p>
+                            <p className="text-sm text-gray-600 font-medium">Free</p>
                           )}
                         </div>
                       </RadioGroup.Option>
@@ -232,7 +232,7 @@ const Shipping: React.FC<ShippingProps> = ({
               <div className="flex justify-end pt-4">
                 <Button
                   size="large"
-                  className="px-8 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
+                  className="px-8 py-3 bg-gray-900 hover:bg-gray-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                   onClick={handleSubmit}
                   isLoading={isLoading}
                   disabled={!cart.shipping_methods?.[0]}
@@ -246,9 +246,9 @@ const Shipping: React.FC<ShippingProps> = ({
         ) : (
           <div>
             {cart && (cart.shipping_methods?.length ?? 0) > 0 && (
-              <div className="bg-green-50/50 rounded-xl p-4 border border-green-100">
+              <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
                 <div className="flex items-center gap-2 mb-3">
-                  <FaTruck className="w-4 h-4 text-green-600" />
+                  <FaTruck className="w-4 h-4 text-gray-600" />
                   <Text className="font-semibold text-gray-900">
                     Selected Method
                   </Text>

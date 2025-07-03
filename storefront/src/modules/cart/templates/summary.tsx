@@ -43,11 +43,11 @@ const Summary = ({ cart }: SummaryProps) => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-4 border border-emerald-100"
+        className="bg-gray-50 rounded-xl p-4 border border-gray-200"
       >
         <div className="flex items-center gap-2 mb-3">
-          <FaTag className="w-4 h-4 text-emerald-600" />
-          <span className="text-sm font-medium text-emerald-900">Promo Code</span>
+          <FaTag className="w-4 h-4 text-gray-600" />
+          <span className="text-sm font-medium text-gray-900">Promo Code</span>
         </div>
         <DiscountCode cart={cart} />
       </motion.div>

@@ -26,7 +26,7 @@ const CartTemplate = ({
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-gray-400 to-gray-500 rounded-full mb-4">
               <FaShoppingBag className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-4xl font-bold text-gray-900 mb-2">Shopping Cart</h1>
@@ -52,7 +52,7 @@ const CartTemplate = ({
                 className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
               >
                 {!customer && (
-                  <div className="p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
+                  <div className="p-6 border-b border-gray-200">
                     <SignInPrompt />
                   </div>
                 )}
@@ -94,8 +94,8 @@ const CartTemplate = ({
                       <span className="text-sm text-gray-700">SSL Encrypted</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                        <FaShieldAlt className="w-4 h-4 text-blue-600" />
+                      <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                        <FaShieldAlt className="w-4 h-4 text-gray-600" />
                       </div>
                       <span className="text-sm text-gray-700">Secure Payment</span>
                     </div>
