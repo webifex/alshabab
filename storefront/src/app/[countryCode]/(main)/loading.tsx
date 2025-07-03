@@ -27,8 +27,12 @@ const PageLoading = () => {
           />
           
           {/* Logo container */}
-          <div className="relative w-20 h-20 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center shadow-2xl">
-            <span className="text-white font-bold text-2xl">AS</span>
+          <div className="relative w-24 h-24 bg-white/90 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center shadow-2xl hover:shadow-3xl transition-all duration-500">
+            <img 
+              src="/logo/logo.png" 
+              alt="Al Shabaab Fabrics Logo" 
+              className="w-16 h-16 object-contain drop-shadow-lg"
+            />
           </div>
         </motion.div>
 

@@ -66,11 +66,11 @@ const CartDrawer = ({
     <>
       {/* Cart Button */}
       <button
-        className="h-full flex items-center relative p-2 hover:bg-white/60 rounded-xl transition-colors"
+        className="h-full flex items-center relative hover:bg-white/60 rounded-xl transition-colors"
         onClick={open}
         aria-label="Open shopping cart"
       >
-        <FaShoppingBag size={24} className="text-gray-700" />
+        <FaShoppingBag className="text-base text-gray-700" />
         {/* Cart count badge - always visible */}
         <span className={`absolute -top-1 -right-1 text-white text-xs rounded-full px-1.5 py-0.5 min-w-[20px] h-5 flex items-center justify-center font-semibold transition-all duration-300 ${
           totalItems > 0 

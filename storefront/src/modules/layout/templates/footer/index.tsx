@@ -46,11 +46,11 @@ export default function Footer() {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-emerald-400 to-green-500 rounded-xl flex items-center justify-center">
+              <div className="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/10 rounded-xl flex items-center justify-center hover:bg-white/20 transition-all duration-300">
                 <img 
                   src="/logo/logo.png" 
                   alt="Al-Shabaab Fabrics Logo" 
-                  className="object-contain w-8 h-8"
+                  className="object-contain w-10 h-10 drop-shadow-sm"
                 />
               </div>
               <div>

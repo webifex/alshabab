@@ -15,23 +15,23 @@ const LoadingSpinner = () => {
         >
           <motion.div
             animate={{ 
-              scale: [1, 1.05, 1],
-              opacity: [0.6, 0.8, 0.6]
+              scale: [1, 1.05, 1]
             }}
             transition={{ 
               duration: 2.5,
               repeat: Infinity,
               ease: 'easeInOut'
             }}
-            className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full blur-xl"
-          />
-          <Image 
-            src="/logo/logo.png" 
-            alt="Al Shabaab Fabrics" 
-            width={80} 
-            height={80} 
-            className="relative object-contain h-20 w-20 drop-shadow-lg"
-          />
+            className="w-24 h-24 bg-white/90 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center shadow-2xl"
+          >
+            <Image 
+              src="/logo/logo.png" 
+              alt="Al Shabaab Fabrics" 
+              width={96} 
+              height={96} 
+              className="object-contain h-20 w-20 drop-shadow-lg"
+            />
+          </motion.div>
         </motion.div>
 
         {/* Brand name - more subtle entrance */}

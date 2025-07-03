@@ -4,7 +4,7 @@ import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
 import CartPrice from "@modules/layout/components/cart-price"
-import { FaHeart, FaSearch, FaTimes, FaUser } from "react-icons/fa"
+import { FaSearch, FaTimes, FaUser } from "react-icons/fa"
 import { Menu } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { AnimatePresence, motion } from "framer-motion"
@@ -40,9 +40,7 @@ export default function Nav() {
   // Helper to render nav links with icons (for mobile menu)
   const renderNavLink = (item: { name: string; href: string }) => {
     let icon = null
-    if (item.name.toLowerCase().includes("wishlist")) icon = <FaHeart className="mr-3" />
-    if (item.name.toLowerCase().includes("compare")) icon = <FaHeart className="mr-3" />
-    if (item.name.toLowerCase().includes("login") || item.name.toLowerCase().includes("account")) icon = <FaHeart className="mr-3" />
+    if (item.name.toLowerCase().includes("login") || item.name.toLowerCase().includes("account")) icon = <FaUser className="mr-3" />
     return (
       <LocalizedClientLink
         key={item.name}
@@ -154,14 +152,15 @@ export default function Nav() {
           >
             <LocalizedClientLink href="/" className="flex flex-col items-center group/logo" aria-label="Home">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full blur-lg opacity-20 group-hover/logo:opacity-40 transition-opacity duration-300"></div>
-                <Image 
-                  src="/logo/logo.png" 
-                  alt="Al Shabaab Fabrics Logo" 
-                  width={56} 
-                  height={56} 
-                  className="relative object-contain h-14 w-14 drop-shadow-sm" 
-                />
+                <div className="w-20 h-20 bg-white/90 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-white group-hover/logo:scale-105">
+                  <Image 
+                    src="/logo/logo.png" 
+                    alt="Al Shabaab Fabrics Logo" 
+                    width={64} 
+                    height={64} 
+                    className="object-contain h-16 w-16 drop-shadow-sm" 
+                  />
+                </div>
               </div>
               <span className="mt-2 text-xs tracking-[0.2em] font-bold text-gray-700 group-hover/logo:text-emerald-600 transition-colors duration-300">
                 AL-SHABAAB FABRICS
@@ -170,48 +169,37 @@ export default function Nav() {
           </motion.div>
 
           {/* Right: Enhanced Actions (desktop only) */}
-          <div className="flex flex-1 justify-end items-center gap-x-6 min-w-[240px] hidden md:flex">
+          <div className="flex flex-1 justify-end items-center gap-x-4 min-w-[260px] hidden md:flex">
             {/* Sign In Button */}
             <motion.div whileHover={{ y: -2 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
               <LocalizedClientLink 
                 href="/account" 
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-emerald-600 hover:bg-white/60 rounded-xl transition-all duration-300 group/signin"
+                className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-white bg-white/60 hover:bg-emerald-600 border border-white/30 hover:border-emerald-600 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md"
                 aria-label="Sign in to your account"
               >
-                <FaUser className="text-xs opacity-70 group-hover/signin:opacity-100 transition-opacity" />
+                <FaUser className="text-sm" />
                 Sign in
               </LocalizedClientLink>
             </motion.div>
 
             {/* Search Button */}
             <motion.button 
-              className="p-2.5 text-gray-600 hover:text-emerald-600 hover:bg-white/60 rounded-xl transition-all duration-300 group/search" 
+              className="p-3 text-gray-600 hover:text-emerald-600 hover:bg-white/60 rounded-xl transition-all duration-300 group/search" 
               aria-label="Search products"
               onClick={() => router.push('/search')}
               whileHover={{ y: -2, scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <FaSearch className="text-sm group-hover/search:scale-110 transition-transform duration-300" />
-            </motion.button>
-
-            {/* Wishlist Button */}
-            <motion.button 
-              className="p-2.5 text-gray-600 hover:text-red-500 hover:bg-white/60 rounded-xl transition-all duration-300 group/wishlist" 
-              aria-label="View wishlist"
-              whileHover={{ y: -2, scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <FaHeart className="text-sm group-hover/wishlist:scale-110 transition-transform duration-300" />
+              <FaSearch className="text-base group-hover/search:scale-110 transition-transform duration-300" />
             </motion.button>
 
             {/* Enhanced Cart Section */}
-            <div className="flex items-center gap-3 px-4 py-2 bg-white/60 hover:bg-white/80 rounded-xl transition-all duration-300 group/cart border border-white/30">
+            <div className="flex items-center gap-3 px-4 py-2.5 bg-white/60 hover:bg-white/80 rounded-xl transition-all duration-300 group/cart border border-white/30">
               <Suspense fallback={<span className="text-lg">🛒</span>}>
                 <CartButton />
               </Suspense>
-              <Suspense fallback={<span className="text-sm font-semibold text-gray-700">$0.00</span>}>
+              <Suspense fallback={<span className="text-base font-semibold text-gray-700">$0.00</span>}>
                 <CartPrice />
               </Suspense>
             </div>
@@ -232,8 +220,12 @@ export default function Nav() {
             <div className="flex flex-col items-center justify-center">
               <LocalizedClientLink href="/" className="flex flex-col items-center group" aria-label="Home">
                 <div className="relative">
-                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-400 to-green-500 rounded-xl flex items-center justify-center shadow-lg">
-                    <span className="text-white font-bold text-lg">AS</span>
+                  <div className="w-16 h-16 bg-white/90 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-white">
+                    <img 
+                      src="/logo/logo.png" 
+                      alt="Al Shabaab Fabrics Logo" 
+                      className="w-12 h-12 object-contain drop-shadow-sm"
+                    />
                   </div>
                 </div>
                 <span className="mt-1 text-xs tracking-widest font-semibold text-gray-700 group-hover:text-emerald-600 transition-colors">
@@ -320,10 +312,14 @@ export default function Nav() {
                     style={{ width: '75vw', maxWidth: 420 }}
                   >
                     {/* Header */}
-                    <div className="flex w-full items-center justify-between p-6 border-b border-gray-100 bg-gradient-to-r from-emerald-50 to-teal-50">
+                    <div className="flex w-full items-center justify-between p-6 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-slate-50">
                       <LocalizedClientLink href="/" className="flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
-                        <div className="w-10 h-10 bg-gradient-to-br from-emerald-400 to-green-500 rounded-xl flex items-center justify-center">
-                          <span className="text-white font-bold">AS</span>
+                        <div className="w-12 h-12 bg-white/80 backdrop-blur-md border border-gray-200/50 rounded-xl flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300 hover:bg-white">
+                          <img 
+                            src="/logo/logo.png" 
+                            alt="Al Shabaab Fabrics Logo" 
+                            className="w-10 h-10 object-contain drop-shadow-sm"
+                          />
                         </div>
                         <div>
                           <h3 className="font-bold text-gray-900 text-sm">AL-SHABAAB</h3>
