@@ -8,9 +8,32 @@ import { getCollectionsWithProducts } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
 export const metadata: Metadata = {
-  title: "Medusa Next.js Starter Template",
-  description:
-    "A performant frontend ecommerce starter template with Next.js 14 and Medusa.",
+  title: "Home",
+  description: "Australia's premier destination for quality school uniforms, sports uniforms, and educational supplies. Trusted by schools nationwide for premium fabrics, custom designs, and exceptional service.",
+  keywords: ["school uniforms Australia", "sports uniforms", "educational supplies", "custom school uniforms", "uniform supplier"],
+  openGraph: {
+    title: "Al Shabaab Fabrics - Premium School Uniforms & Educational Supplies",
+    description: "Australia's premier destination for quality school uniforms, sports uniforms, and educational supplies. Trusted by schools nationwide for premium fabrics, custom designs, and exceptional service.",
+    url: "/",
+    siteName: "Al Shabaab Fabrics",
+    images: [
+      {
+        url: "/hero.png",
+        width: 1200,
+        height: 630,
+        alt: "Al Shabaab Fabrics - School Uniforms",
+      },
+    ],
+    locale: "en_AU",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Al Shabaab Fabrics - Premium School Uniforms & Educational Supplies",
+    description: "Australia's premier destination for quality school uniforms, sports uniforms, and educational supplies.",
+    images: ["/hero.png"],
+    creator: "@alshabaabfabrics",
+  },
 }
 
 export default async function Home({

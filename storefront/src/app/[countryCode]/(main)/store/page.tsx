@@ -4,8 +4,21 @@ import { SortOptions } from "@modules/store/components/refinement-list/sort-prod
 import StoreTemplate from "@modules/store/templates"
 
 export const metadata: Metadata = {
-  title: "Store",
-  description: "Explore all of our products.",
+  title: "Shop All Products",
+  description: "Browse our complete collection of school uniforms, sports uniforms, books, and educational supplies. Quality products for students across Australia.",
+  keywords: ["school products", "uniform shop", "educational supplies store", "student uniforms", "school books"],
+  openGraph: {
+    title: "Shop All Products - Al Shabaab Fabrics",
+    description: "Browse our complete collection of school uniforms, sports uniforms, books, and educational supplies. Quality products for students across Australia.",
+    url: "/store",
+    siteName: "Al Shabaab Fabrics",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shop All Products - Al Shabaab Fabrics",
+    description: "Browse our complete collection of school uniforms, sports uniforms, books, and educational supplies.",
+  },
 }
 
 type Params = {

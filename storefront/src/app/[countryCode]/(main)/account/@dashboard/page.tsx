@@ -6,8 +6,12 @@ import { getCustomer } from "@lib/data/customer"
 import { listOrders } from "@lib/data/orders"
 
 export const metadata: Metadata = {
-  title: "Account",
-  description: "Overview of your account activity.",
+  title: "My Account",
+  description: "Manage your Al Shabaab Fabrics account, view order history, track deliveries, and update your profile information.",
+  robots: {
+    index: false, // Account pages shouldn't be indexed
+    follow: false,
+  },
 }
 
 export default async function OverviewTemplate() {

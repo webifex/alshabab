@@ -59,8 +59,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const metadata = {
-    title: `${collection.title} | Medusa Store`,
-    description: `${collection.title} collection`,
+    title: `${collection.title} Collection`,
+    description: `Browse our ${collection.title} collection at Al Shabaab Fabrics. Quality products for students and schools across Australia.`,
+    keywords: [collection.title, "collection", "school products", "educational supplies"],
+    openGraph: {
+      title: `${collection.title} Collection - Al Shabaab Fabrics`,
+      description: `Browse our ${collection.title} collection at Al Shabaab Fabrics. Quality products for students and schools.`,
+      url: `/collections/${collection.handle}`,
+      siteName: "Al Shabaab Fabrics",
+      type: "website",
+    },
   } as Metadata
 
   return metadata

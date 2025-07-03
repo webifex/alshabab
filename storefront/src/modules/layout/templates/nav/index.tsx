@@ -57,7 +57,7 @@ export default function Nav() {
   }
 
   return (
-    <div className="sticky top-0 inset-x-0 z-50 group">
+    <div className="sticky top-0 inset-x-0 z-50 group py-5">
       {/* Glass morphism navbar background */}
       <div className="absolute inset-0 bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-lg shadow-black/5"></div>
       

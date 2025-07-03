@@ -5,8 +5,12 @@ import { notFound } from "next/navigation"
 import { listOrders } from "@lib/data/orders"
 
 export const metadata: Metadata = {
-  title: "Orders",
-  description: "Overview of your previous orders.",
+  title: "My Orders",
+  description: "View your order history, track current deliveries, and manage returns for your Al Shabaab Fabrics purchases.",
+  robots: {
+    index: false, // Account pages shouldn't be indexed
+    follow: false,
+  },
 }
 
 export default async function Orders() {

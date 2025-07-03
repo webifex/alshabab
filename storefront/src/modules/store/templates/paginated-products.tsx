@@ -67,26 +67,66 @@ export default async function PaginatedProducts({
   const totalPages = Math.ceil(count / PRODUCT_LIMIT)
 
   return (
-    <>
-      <ul
-        className="grid grid-cols-2 w-full small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8"
-        data-testid="products-list"
-      >
-        {products.map((p) => {
-          return (
-            <li key={p.id}>
-              <ProductPreview product={p} region={region} />
-            </li>
-          )
-        })}
-      </ul>
-      {totalPages > 1 && (
-        <Pagination
-          data-testid="product-pagination"
-          page={page}
-          totalPages={totalPages}
-        />
+    <div className="space-y-8">
+      {/* Products Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-xl font-semibold text-gray-900">
+            {count} {count === 1 ? 'Product' : 'Products'} Found
+          </h2>
+          <p className="text-sm text-gray-600 mt-1">
+            Page {page} of {totalPages}
+          </p>
+        </div>
+        <div className="text-sm text-gray-600">
+          Showing {((page - 1) * PRODUCT_LIMIT) + 1} - {Math.min(page * PRODUCT_LIMIT, count)} of {count} results
+        </div>
+      </div>
+
+      {/* Products Grid */}
+      {products.length > 0 ? (
+        <>
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 auto-rows-fr"
+            data-testid="products-list"
+          >
+            {products.map((p) => {
+              return (
+                <div key={p.id}>
+                  <ProductPreview product={p} region={region} />
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex justify-center mt-12">
+              <Pagination
+                data-testid="product-pagination"
+                page={page}
+                totalPages={totalPages}
+              />
+            </div>
+          )}
+        </>
+      ) : (
+        /* No Products Found */
+        <div className="text-center py-16">
+          <div className="w-24 h-24 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-6">
+            <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2M4 13h2m0 0V9a2 2 0 012-2h2m5 0h2a2 2 0 012 2v4M7 13h10"></path>
+            </svg>
+          </div>
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">No Products Found</h3>
+          <p className="text-gray-600 mb-6">
+            We couldn't find any products matching your criteria. Try adjusting your filters or browse other categories.
+          </p>
+          <button className="px-6 py-3 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-colors">
+            Browse All Products
+          </button>
+        </div>
       )}
-    </>
+    </div>
   )
 }

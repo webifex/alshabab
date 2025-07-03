@@ -6,8 +6,12 @@ import { search } from "@modules/search/actions"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 
 export const metadata: Metadata = {
-  title: "Search",
-  description: "Explore all of our products.",
+  title: "Search Results",
+  description: "Search results for products in our school uniforms, sports uniforms, books, and educational supplies catalog.",
+  robots: {
+    index: false, // Search result pages typically shouldn't be indexed
+    follow: true,
+  },
 }
 
 type Params = {

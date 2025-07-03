@@ -57,10 +57,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `${title} category.`
 
     return {
-      title: `${title} | Medusa Store`,
+      title: `${title}`,
       description,
+      keywords: [title, "school uniforms", "educational supplies", "student products"],
       alternates: {
         canonical: `${params.category.join("/")}`,
+      },
+      openGraph: {
+        title: `${title} - Al Shabaab Fabrics`,
+        description: description,
+        url: `/categories/${params.category.join("/")}`,
+        siteName: "Al Shabaab Fabrics",
+        type: "website",
       },
     }
   } catch (error) {

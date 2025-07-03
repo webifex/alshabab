@@ -57,11 +57,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${product.title} | Medusa Store`,
-    description: `${product.title}`,
-    openGraph: {
-      title: `${product.title} | Medusa Store`,
-      description: `${product.title}`,
+    title: `${product.title}`,
+    description: `${product.description || product.title} - Quality ${product.title.toLowerCase()} from Al Shabaab Fabrics. Perfect for students with premium materials and excellent craftsmanship.`,
+    keywords: [`${product.title}`, "school uniforms", "educational supplies", "quality products", "student supplies"],
+          openGraph: {
+        title: `${product.title} - Al Shabaab Fabrics`,
+        description: `${product.description || product.title} - Quality products from Al Shabaab Fabrics.`,
+        images: product.thumbnail ? [
+          {
+            url: product.thumbnail,
+            width: 800,
+            height: 600,
+            alt: product.title,
+          }
+        ] : [],
+        type: "website",
+        siteName: "Al Shabaab Fabrics",
+      },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.title} - Al Shabaab Fabrics`,
+      description: `${product.description || product.title} - Quality products from Al Shabaab Fabrics.`,
       images: product.thumbnail ? [product.thumbnail] : [],
     },
   }

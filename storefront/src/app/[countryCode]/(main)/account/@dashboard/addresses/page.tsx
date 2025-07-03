@@ -8,8 +8,12 @@ import { getRegion } from "@lib/data/regions"
 import { getCustomer } from "@lib/data/customer"
 
 export const metadata: Metadata = {
-  title: "Addresses",
-  description: "View your addresses",
+  title: "My Addresses",
+  description: "Manage your shipping and billing addresses for faster checkout on your Al Shabaab Fabrics orders.",
+  robots: {
+    index: false, // Account pages shouldn't be indexed
+    follow: false,
+  },
 }
 
 export default async function Addresses({

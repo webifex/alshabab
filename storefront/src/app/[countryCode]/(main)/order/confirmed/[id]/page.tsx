@@ -27,7 +27,11 @@ async function getOrder(id: string) {
 
 export const metadata: Metadata = {
   title: "Order Confirmed",
-  description: "You purchase was successful",
+  description: "Your order has been successfully placed with Al Shabaab Fabrics. Thank you for your purchase of quality school uniforms and supplies.",
+  robots: {
+    index: false, // Order confirmation pages shouldn't be indexed
+    follow: false,
+  },
 }
 
 export default async function OrderConfirmedPage({ params }: Props) {

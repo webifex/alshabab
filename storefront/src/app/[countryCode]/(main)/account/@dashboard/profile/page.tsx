@@ -11,8 +11,12 @@ import { listRegions } from "@lib/data/regions"
 import { getCustomer } from "@lib/data/customer"
 
 export const metadata: Metadata = {
-  title: "Profile",
-  description: "View and edit your Medusa Store profile.",
+  title: "My Profile",
+  description: "Update your personal information, contact details, and preferences for your Al Shabaab Fabrics account.",
+  robots: {
+    index: false, // Account pages shouldn't be indexed
+    follow: false,
+  },
 }
 
 export default async function Profile() {

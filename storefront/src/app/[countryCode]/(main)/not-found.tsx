@@ -3,8 +3,12 @@ import { Metadata } from "next"
 import InteractiveLink from "@modules/common/components/interactive-link"
 
 export const metadata: Metadata = {
-  title: "404",
-  description: "Something went wrong",
+  title: "Page Not Found",
+  description: "The page you're looking for doesn't exist. Browse our school uniforms, sports uniforms, and educational supplies at Al Shabaab Fabrics.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 export default function NotFound() {

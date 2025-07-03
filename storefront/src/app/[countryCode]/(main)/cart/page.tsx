@@ -6,8 +6,12 @@ import { HttpTypes } from "@medusajs/types"
 import { getCustomer } from "@lib/data/customer"
 
 export const metadata: Metadata = {
-  title: "Cart",
-  description: "View your cart",
+  title: "Shopping Cart",
+  description: "Review your selected school uniforms, sports uniforms, and educational supplies before checkout. Secure ordering from Al Shabaab Fabrics.",
+  robots: {
+    index: false, // Cart pages shouldn't be indexed
+    follow: false,
+  },
 }
 
 const fetchCart = async () => {
